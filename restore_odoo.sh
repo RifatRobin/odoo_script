@@ -18,7 +18,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 echo "restoring database $new_db_name ..."
-psql -U "$postgres_user" "$new_db_name" < "$backup_sql_path"
+timeout 600 psql -U "$postgres_user" "$new_db_name" < "$backup_sql_path"
 if [ $? -ne 0 ]; then
   echo "restor process failed from $backup_sql_path please check again."
   exit 1
