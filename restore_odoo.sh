@@ -1,10 +1,10 @@
 #!/bin/bash
 
 new_db_name="ed17_02"
-backup_sql_path="/home/morphogenesis/Documents/Easy_Dhaka/db_backup/neweasydhaka_backup_07_11_2024/neweasydhaka_backup_07_11_2024.sql"
-backup_filestore_path="/home/morphogenesis/Documents/Easy_Dhaka/db_backup/neweasydhaka_backup_07_11_2024/neweasydhaka"
-local_filestore_path="/home/morphogenesis/.local/share/Odoo/filestore"
-postgres_user="morphogenesis"
+backup_sql_path="/home/xxx/xxx/xxx/xxx_data.sql"
+backup_filestore_path="/home/xxx/xxx/xxx/xxx_data/xxx_data_filestore_path"
+local_filestore_path="/home/xxxx/.local/share/Odoo/filestore"
+postgres_user="your postgres user"
 
 if [[ -z "$new_db_name" || -z "$backup_sql_path" || -z "$backup_filestore_path" || -z "$local_filestore_path" || -z "$postgres_user" ]]; then
   exit 1
@@ -39,6 +39,10 @@ fi
 
 #take all the file from the backup_filestore_path and replace newly created new_db_name filestore folder's data with them
 echo "copying filestore from $backup_filestore_path to $new_filestore_path..."
+
+:'
+use: cp -r "$backup_filestore_path"/* "$new_filestore_path" if you want to keep the filestore in your location
+'
 # cp -r "$backup_filestore_path"/* "$new_filestore_path"
 mv "$backup_filestore_path"/* "$new_filestore_path"
 if [ $? -ne 0 ]; then
